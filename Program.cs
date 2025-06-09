@@ -18,7 +18,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IPublisherRepository, PublisherRepository>();
 builder.Services.AddScoped<IPublisherService,PublisherService>();
-builder.Services.AddSingleton(new RabbitMQPublisher("localhost", "catalog-net-java-queue"));
+builder.Services.AddSingleton(new RabbitMQPublisher("localhost", "book-store-queue"));
 
 var app = builder.Build();
 
