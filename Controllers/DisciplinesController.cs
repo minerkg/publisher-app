@@ -11,8 +11,8 @@ namespace publisher_app.Controllers
     public class DisciplinesController : ControllerBase
     {
 
-        private readonly IDisciplineService _disciplineService;
-        public DisciplinesController(IDisciplineService disciplineService)
+        private readonly IPublisherService _disciplineService;
+        public DisciplinesController(IPublisherService disciplineService)
         {
             _disciplineService = disciplineService;
         }
@@ -21,7 +21,7 @@ namespace publisher_app.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Publisher>>> GetDisciplines()
         {
-           var discipline= await _disciplineService.GetDisciplinesAsync();
+           var discipline= await _disciplineService.GetPublishersAsync();
             return Ok(discipline);
         }
 
@@ -29,7 +29,7 @@ namespace publisher_app.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Publisher>> GetDiscipline(long id)
         {
-            var discipline= await _disciplineService.GetDisciplineAsync(id);
+            var discipline= await _disciplineService.GetPublisherAsync(id);
             return Ok(discipline);
         }
 
@@ -37,7 +37,7 @@ namespace publisher_app.Controllers
         [HttpPost]
         public async Task<ActionResult<Publisher>> PostDiscipline(Publisher discipline)
         {
-            await _disciplineService.CreateDisciplineAsync(discipline);
+            await _disciplineService.CreatePublisherAsync(discipline);
             return Ok(discipline);
         }
 
@@ -49,11 +49,11 @@ namespace publisher_app.Controllers
             {
                 return BadRequest();
             }
-            if(! await _disciplineService.DisciplineExistsAsync(id))
+            if(! await _disciplineService.PublisherExistsAsync(id))
             {
                 return NotFound();
             }
-            await _disciplineService.UpdateDisciplineAsync(discipline);
+            await _disciplineService.UpdatePublisherAsync(discipline);
             return NoContent();
         }
 
@@ -65,7 +65,7 @@ namespace publisher_app.Controllers
         {
             try
             {
-                await _disciplineService.DeleteDisciplineAsync(id);
+                await _disciplineService.DeletePublisherAsync(id);
             }
             catch (ArgumentException ) { return NotFound(); }
             return NoContent() ;
