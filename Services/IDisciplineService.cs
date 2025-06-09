@@ -1,13 +1,13 @@
-﻿using catalog_disciplines.Models;
+﻿using publisher_app.Models;
 
-namespace catalog_disciplines.Services
+namespace publisher_app.Services
 {
     public interface IDisciplineService
     {
-        Task CreateDisciplineAsync(Discipline discipline);
-        Task<IEnumerable<Discipline>> GetDisciplinesAsync();
-        Task<Discipline> GetDisciplineAsync(long id);
-        Task UpdateDisciplineAsync(Discipline discipline);
+        Task CreateDisciplineAsync(Publisher discipline);
+        Task<IEnumerable<Publisher>> GetDisciplinesAsync();
+        Task<Publisher> GetDisciplineAsync(long id);
+        Task UpdateDisciplineAsync(Publisher discipline);
         Task DeleteDisciplineAsync(long id);
         Task<bool> DisciplineExistsAsync(long id);
     }

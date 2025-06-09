@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using catalog_disciplines.Models;
+using publisher_app.Models;
 
 #nullable disable
 
-namespace catalog_disciplines.Migrations
+namespace publisher_app.Migrations
 {
-    [DbContext(typeof(DisciplineContext))]
+    [DbContext(typeof(PublisherContext))]
     [Migration("20240523191142_Initial")]
     partial class Initial
     {
@@ -24,7 +24,7 @@ namespace catalog_disciplines.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("catalog_disciplines.Models.Discipline", b =>
+            modelBuilder.Entity("publisher_app.Models.Publisher", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()

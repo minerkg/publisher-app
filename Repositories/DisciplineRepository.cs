@@ -1,18 +1,18 @@
-﻿using catalog_disciplines.Models;
+﻿using publisher_app.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace catalog_disciplines.Repositories
+namespace publisher_app.Repositories
 {
     public class DisciplineRepository : IDisciplineRepository
     {
-        private readonly DisciplineContext _disciplineContext;
+        private readonly PublisherContext _disciplineContext;
 
-        public DisciplineRepository(DisciplineContext disciplineContext)
+        public DisciplineRepository(PublisherContext disciplineContext)
         {
             _disciplineContext = disciplineContext;
         }
 
-        public async Task CreateDisciplineAsync(Discipline discipline)
+        public async Task CreateDisciplineAsync(Publisher discipline)
         {
             _disciplineContext.Disciplines.Add(discipline);
             await _disciplineContext.SaveChangesAsync();
@@ -32,17 +32,17 @@ namespace catalog_disciplines.Repositories
             return await _disciplineContext.Disciplines.AnyAsync(d => d.Id==id);
         }
 
-        public async Task<Discipline> GetDisciplineAsync(long id)
+        public async Task<Publisher> GetDisciplineAsync(long id)
         {
             return await _disciplineContext.Disciplines.FirstOrDefaultAsync(discipline => discipline.Id == id);
         }
 
-        public async Task<IEnumerable<Discipline>> GetDisciplinesAsync()
+        public async Task<IEnumerable<Publisher>> GetDisciplinesAsync()
         {
             return await _disciplineContext.Disciplines.ToListAsync();
         }
 
-        public async Task UpdateDisciplineAsync(Discipline discipline)
+        public async Task UpdateDisciplineAsync(Publisher discipline)
         {
             _disciplineContext.Entry(discipline).State = EntityState.Modified;
             await _disciplineContext.SaveChangesAsync();

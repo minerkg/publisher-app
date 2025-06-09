@@ -1,14 +1,14 @@
-using catalog_disciplines.Models;
-using catalog_disciplines.Repositories;
-using catalog_disciplines.Services;
+using publisher_app.Models;
+using publisher_app.Repositories;
+using publisher_app.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddDbContext<DisciplineContext>(options =>
-                    options.UseSqlServer(builder.Configuration.GetConnectionString("DisciplineContext")));
+builder.Services.AddDbContext<PublisherContext>(options =>
+                    options.UseSqlServer(builder.Configuration.GetConnectionString("PublisherContext")));
 
 builder.Services.AddControllers();
 

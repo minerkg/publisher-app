@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace catalog_disciplines.Models
+namespace publisher_app.Models
 {
-    public class DisciplineContext:DbContext
+    public class PublisherContext:DbContext
     {
-        public DisciplineContext(DbContextOptions<DisciplineContext> options):base(options) { }
+        public PublisherContext(DbContextOptions<PublisherContext> options):base(options) { }
         
-        public DbSet<Discipline> Disciplines { get; set; }=null!;
+        public DbSet<Publisher> Publishers { get; set; }=null!;
         
 
 

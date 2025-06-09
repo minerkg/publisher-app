@@ -1,11 +1,11 @@
-﻿namespace catalog_disciplines.Models
+﻿namespace publisher_app.Models
 {
-    public class Discipline
+    public class Publisher
     {
         public long Id { get; set; }
-        public string? Title { get; set; }
-        public string? Teacher { get; set; }
-        public int Credits { get; set; }
+        public string? Name { get; set; }
+        public string? Address { get; set; }
+        //public List<Book> BookList { get; set; }
 
 
     }

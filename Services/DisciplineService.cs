@@ -1,8 +1,8 @@
-﻿using catalog_disciplines.Models;
-using catalog_disciplines.Repositories;
+﻿using publisher_app.Models;
+using publisher_app.Repositories;
 using System.Diagnostics;
 
-namespace catalog_disciplines.Services
+namespace publisher_app.Services
 {
     public class DisciplineService : IDisciplineService
     {
@@ -16,7 +16,7 @@ namespace catalog_disciplines.Services
             _rabbitMQPublisher = rabbitMQPublisher;
         }
 
-        public async Task CreateDisciplineAsync(Discipline discipline)
+        public async Task CreateDisciplineAsync(Publisher discipline)
         {
             Debug.WriteLine("creating new discipline");
             await _disciplineRepository.CreateDisciplineAsync(discipline);
@@ -33,17 +33,17 @@ namespace catalog_disciplines.Services
             return await _disciplineRepository.DisciplineExistsAsync(id);
         }
 
-        public async Task<Discipline> GetDisciplineAsync(long id)
+        public async Task<Publisher> GetDisciplineAsync(long id)
         {
             return await _disciplineRepository.GetDisciplineAsync(id);
         }
 
-        public async Task<IEnumerable<Discipline>> GetDisciplinesAsync()
+        public async Task<IEnumerable<Publisher>> GetDisciplinesAsync()
         {
             return await _disciplineRepository.GetDisciplinesAsync();
         }
 
-        public async Task UpdateDisciplineAsync(Discipline discipline)
+        public async Task UpdateDisciplineAsync(Publisher discipline)
         {
             await _disciplineRepository.UpdateDisciplineAsync(discipline);
         }

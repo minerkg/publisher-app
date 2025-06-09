@@ -1,10 +1,10 @@
-﻿using catalog_disciplines.Models;
-using catalog_disciplines.Services;
+﻿using publisher_app.Models;
+using publisher_app.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace catalog_disciplines.Controllers
+namespace publisher_app.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -19,7 +19,7 @@ namespace catalog_disciplines.Controllers
 
         // Get : api/Disciplines
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Discipline>>> GetDisciplines()
+        public async Task<ActionResult<IEnumerable<Publisher>>> GetDisciplines()
         {
            var discipline= await _disciplineService.GetDisciplinesAsync();
             return Ok(discipline);
@@ -27,7 +27,7 @@ namespace catalog_disciplines.Controllers
 
         // Get : api/Disciplines/2
         [HttpGet("{id}")]
-        public async Task<ActionResult<Discipline>> GetDiscipline(long id)
+        public async Task<ActionResult<Publisher>> GetDiscipline(long id)
         {
             var discipline= await _disciplineService.GetDisciplineAsync(id);
             return Ok(discipline);
@@ -35,7 +35,7 @@ namespace catalog_disciplines.Controllers
 
         // Post : api/Disciplines
         [HttpPost]
-        public async Task<ActionResult<Discipline>> PostDiscipline(Discipline discipline)
+        public async Task<ActionResult<Publisher>> PostDiscipline(Publisher discipline)
         {
             await _disciplineService.CreateDisciplineAsync(discipline);
             return Ok(discipline);
@@ -43,7 +43,7 @@ namespace catalog_disciplines.Controllers
 
         // Put : api/Disciplines/2
         [HttpPut]
-        public async Task<ActionResult<Discipline>> PutDiscipline(long id, Discipline discipline)
+        public async Task<ActionResult<Publisher>> PutDiscipline(long id, Publisher discipline)
         {
             if (id != discipline.Id)
             {
@@ -61,7 +61,7 @@ namespace catalog_disciplines.Controllers
 
         // Delete : api/Disciplines/2
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Discipline>> DeleteDiscipline(int id)
+        public async Task<ActionResult<Publisher>> DeleteDiscipline(int id)
         {
             try
             {
