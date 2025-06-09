@@ -1,6 +1,0 @@
-@catalog_disciplines_HostAddress = http://localhost:5034
-
-GET {{catalog_disciplines_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

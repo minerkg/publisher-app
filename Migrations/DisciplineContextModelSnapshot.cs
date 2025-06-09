@@ -3,14 +3,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using catalog_disciplines.Models;
+using publisher_app.Models;
 
 #nullable disable
 
-namespace catalog_disciplines.Migrations
+namespace publisher_app.Migrations
 {
-    [DbContext(typeof(DisciplineContext))]
-    partial class DisciplineContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(PublisherContext))]
+    partial class PublisherContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace catalog_disciplines.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("catalog_disciplines.Models.Discipline", b =>
+            modelBuilder.Entity("publisher_app.Models.Publisher", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -29,18 +29,15 @@ namespace catalog_disciplines.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<int>("Credits")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Teacher")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Disciplines");
+                    b.ToTable("Publishers");
                 });
 #pragma warning restore 612, 618
         }

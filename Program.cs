@@ -1,14 +1,14 @@
-using catalog_disciplines.Models;
-using catalog_disciplines.Repositories;
-using catalog_disciplines.Services;
+using publisher_app.Models;
+using publisher_app.Repositories;
+using publisher_app.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddDbContext<DisciplineContext>(options =>
-                    options.UseSqlServer(builder.Configuration.GetConnectionString("DisciplineContext")));
+builder.Services.AddDbContext<PublisherContext>(options =>
+                    options.UseSqlServer(builder.Configuration.GetConnectionString("PublisherContext")));
 
 builder.Services.AddControllers();
 
@@ -16,9 +16,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IDisciplineRepository, DisciplineRepository>();
-builder.Services.AddScoped<IDisciplineService,DisciplineService>();
-builder.Services.AddSingleton(new RabbitMQPublisher("localhost", "catalog-net-java-queue"));
+builder.Services.AddScoped<IPublisherRepository, PublisherRepository>();
+builder.Services.AddScoped<IPublisherService,PublisherService>();
+builder.Services.AddSingleton(new RabbitMQPublisher("localhost", "book-store-queue"));
 
 var app = builder.Build();
 

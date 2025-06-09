@@ -2,7 +2,7 @@
 using System.Text;
 
 
-namespace catalog_disciplines.Services
+namespace publisher_app.Services
 {
 
 
