@@ -34,12 +34,16 @@ namespace publisher_app.Repositories
 
         public async Task<Book> GetBookAsync(long id)
         {
-            return await _publisherContext.Books.FirstOrDefaultAsync(book => book.Id == id);
+            return await _publisherContext.Books
+                .Include(b => b.Publisher)
+                .FirstOrDefaultAsync(book => book.Id == id);
         }
 
         public async Task<IEnumerable<Book>> GetBooksAsync()
         {
-            return await _publisherContext.Books.ToListAsync();
+            return await _publisherContext.Books
+                .Include(b => b.Publisher)
+                .ToListAsync();
         }
 
         public async Task UpdateBookAsync(Book book)

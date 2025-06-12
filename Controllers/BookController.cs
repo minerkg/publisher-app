@@ -35,7 +35,7 @@ namespace publisher_app.Controllers
 
         // Post : api/Books
         [HttpPost]
-        public async Task<ActionResult<Book>> PostBook(Book book)
+        public async Task<ActionResult<Book>> PostBook(BookDto book)
         {
             await _bookService.CreateBookAsync(book);
             return Ok(book);

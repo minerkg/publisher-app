@@ -9,11 +9,13 @@ namespace publisher_app.Services
 
         private readonly IBookRepository _bookRepository;
         private readonly RabbitMQPublisher _rabbitMQPublisher;
+        private readonly IPublisherRepository _publisherRepository;
 
-        public BookService(IBookRepository bookRepository, RabbitMQPublisher rabbitMQPublisher)
+        public BookService(IBookRepository bookRepository, RabbitMQPublisher rabbitMQPublisher, IPublisherRepository publisherRepository)
         {
             _bookRepository = bookRepository;
             _rabbitMQPublisher = rabbitMQPublisher;
+            _publisherRepository = publisherRepository;
         }
 
         public async Task<bool> BookExistsAsync(long id)
@@ -21,11 +23,23 @@ namespace publisher_app.Services
             return await _bookRepository.BookExistsAsync(id);
         }
 
-        public async Task CreateBookAsync(Book book)
+        public async Task CreateBookAsync(BookDto bookDto)
         {
             Debug.WriteLine("creating new book");
-            await _bookRepository.CreateBookAsync(book);
-            _rabbitMQPublisher.PublishMessage($"New book added: {book.Title}, {book.Author}, {book.Year}, {book.Price}, {book.Publisher}");
+            var newBook = new Book();
+            var publisher = await _publisherRepository.GetPublisherAsync(bookDto.PublisherId);
+            if (publisher == null)
+            {
+                throw new Exception("Publisher not found");
+            }
+            newBook.Publisher = publisher;
+            newBook.Title = bookDto.Title;
+            newBook.Author = bookDto.Author;
+            newBook.Year = bookDto.Year;
+            newBook.Price = bookDto.Price;
+            
+            await _bookRepository.CreateBookAsync(newBook);
+            _rabbitMQPublisher.PublishMessage($"New book added: {newBook.Title}, {newBook.Author}, {newBook.Year}, {newBook.Price}, {newBook.Publisher}");
         }
 
         public async Task DeleteBookAsync(long id)

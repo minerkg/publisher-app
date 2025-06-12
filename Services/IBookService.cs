@@ -4,7 +4,7 @@ namespace publisher_app.Services
 {
     public interface IBookService
     {
-        Task CreateBookAsync(Book book);
+        Task CreateBookAsync(BookDto book);
         Task<IEnumerable<Book>> GetBooksAsync();
         Task<Book> GetBookAsync(long id);
         Task UpdateBookAsync(Book book);
