@@ -8,11 +8,11 @@ namespace publisher_app.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PusblisherController : ControllerBase
+    public class PublisherController : ControllerBase
     {
 
         private readonly IPublisherService _publisherService;
-        public PusblisherController(IPublisherService publisherService)
+        public PublisherController(IPublisherService publisherService)
         {
             _publisherService = publisherService;
         }
